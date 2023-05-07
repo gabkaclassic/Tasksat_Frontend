@@ -1,9 +1,6 @@
 <template>
 
-    <main-header />
-
     <router-view />
-
 
 </template>
 
@@ -11,7 +8,6 @@
 
 
 export default {
-    components: {MainHeader}
 }
 </script>
 

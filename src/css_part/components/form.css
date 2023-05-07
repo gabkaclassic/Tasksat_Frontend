@@ -1,0 +1,143 @@
+
+
+.form-logo{
+    margin: 0;
+    margin-top: 10%;
+    color: rgb(76, 143, 9);
+    font-size: 60px;
+    text-align: center;
+}
+
+.form{
+    margin: 0;
+    margin-top: -20px;
+    padding: 0;
+    width: 310px;
+    height: auto;
+    padding: 20px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 1);
+    box-shadow: 8px 8px 10px rgba(128, 128, 128, 0.1);
+}
+
+.form__registration{
+    margin: 0;
+    color: rgb(76, 143, 9);
+    font-size: 28px;
+}
+
+.input-form{
+    margin: 0;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    box-sizing: border-box;
+
+}
+
+.input-form__email{
+    border-radius: 5px;
+    margin-top: 20px;
+    border: 2px solid rgb(183, 233, 132);
+    height: 30px;
+    width: 230px;
+}
+
+.input-form__email:hover{
+    border: 2px solid rgb(76, 143, 9);
+}
+
+.input-form__email:focus{
+    outline: none;
+    border: 2px solid rgb(76, 143, 9);
+}
+
+
+.input-form__password{
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 2px solid rgb(183, 233, 132);
+    height: 30px;
+    width: 230px;
+}
+
+.input-form__password:hover{
+    border: 2px solid rgb(76, 143, 9);
+}
+
+.input-form__password:focus{
+    outline: none;
+    border: 2px solid rgb(76, 143, 9);
+}
+
+.input-form__login{
+    border-radius: 5px;
+    margin-top: 10px;
+    border: 2px solid rgb(183, 233, 132);
+    height: 30px;
+    width: 230px;
+}
+
+.input-form__login:hover{
+    border: 2px solid rgb(76, 143, 9);
+}
+
+.input-form__login:focus{
+    outline: none;
+    border: 2px solid rgb(76, 143, 9);
+}
+
+.input-form__bottom_registration{
+    border-radius: 5px;
+    background-color: rgb(183, 233, 132);
+    color: white;
+    width: 160px;
+    height: 30px;
+    border: none;
+    margin-top: 20px;
+}
+
+.input-form__bottom_registration:hover{
+    background-color: rgb(76, 143, 9);
+    color: white;
+}
+
+.link{
+    text-decoration: none;
+    color: #8f979c;
+    margin: 0;
+    font-size: 13px;
+}
+
+.link_active_sign-in{
+    margin-top: 7px;
+}
+
+.link_active_sign-in:hover{
+    color: rgb(76, 143, 9);
+}
+
+.input-form_station_error{
+    border: 2px solid red;
+}
+
+.label{
+    margin-top: 5px;
+    color: grey;
+    font-size: 15px;
+
+}
+.label_station_error{
+    color: red;
+}
+
+ 
+
+ 
