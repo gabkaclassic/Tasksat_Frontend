@@ -1,5 +1,15 @@
 <template>
 
+    <div>
+        <div class="menu">
+            <ul>
+                <li> <button @click="toTasks"> Go to tasks list </button>  </li>
+                <li> <button @click="forceLoadStatistics"> Update </button>  </li>
+
+            </ul>
+        </div>
+    </div>
+
   <main class="scoreboard-page">
 
       <section class="content__tasks" >
@@ -55,17 +65,37 @@ export default defineComponent({
     name: "ScoreBoard",
     data() {
         return {
-            statistics: {}
+            statistics: store.getters.statistics,
         }
     },
     methods: {
         round,
-      loadStatistics() {
+        loadStatistics() {
+          if(!store.getters.statisticsSaved)
+              this.forceLoadStatistics()
+        },
+      forceLoadStatistics() {
         this.$tasksat.statistics.load()
             .then(res => res.json())
             .then(res => {
-                this.statistics = res
+
+                return {
+                    usersCount: res['usersCount'],
+                    recommendationTasksCount: res['recommendationTasksCount'],
+                    questionTasksCount: res['questionTasksCount'],
+                    testTasksCount: res['testTasksCount'],
+                    completedRecommendationTasksCount: res['completedRecommendationTasksCount'],
+                    completedQuestionTasksCount: res['completedQuestionTasksCount'],
+                    completedTestTasksCount: res['completedTestTasksCount'],
+                    generalCompletedRecommendationTasksCount: res['generalCompletedRecommendationTasksCount'],
+                    generalCompletedQuestionTasksCount: res['generalCompletedQuestionTasksCount'],
+                    generalCompletedTestTasksCount: res['generalCompletedTestTasksCount'],
+                }
             })
+            .then(res => {
+                this.$statistics.saveStatistics(res)
+                this.statistics = res
+        })
       },
         belowOrAbove(value) {
             return (value > 0) ? 'above' : 'below'
@@ -109,6 +139,9 @@ export default defineComponent({
                 return 'equal'
             return p + ' ' + this.belowOrAbove(p)
         },
+        toTasks() {
+          router.push({path: '/tasks'})
+        },
     },
     created() {
 
@@ -121,7 +154,7 @@ export default defineComponent({
 
         this.loadStatistics()
 
-        setInterval(this.loadStatistics, 360000)
+        setInterval(this.forceLoadStatistics, 360000)
     },
 })
 </script>
