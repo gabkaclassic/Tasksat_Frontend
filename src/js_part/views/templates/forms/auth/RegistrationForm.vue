@@ -110,7 +110,7 @@ export default {
                 password: '',
                 confirmPassword: '',
                 email: '',
-                iam: appModes.user
+                iam: appModes.user,
             },
             properties: {
                 signButton: "Sign up",
@@ -137,15 +137,13 @@ export default {
             })
                 .then(res => res.json()).then(res => {
                 this.violations = res['violations']
-            }).then(() => {
-                if (this.violations.length !== 0) {
-                    console.log(this.violations.length);
-                    return;
-                }
+            })
+                .then(() => {
 
-                this.$modes.setMainPageLoginMode()
-                }
-            )
+                    if(this.violations.length === 0) {
+                        this.$modes.setMainPageLoginMode()
+                    }
+                })
 
         },
         referer() {

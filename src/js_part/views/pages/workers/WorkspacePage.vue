@@ -18,11 +18,14 @@ export default defineComponent({
     created() {
 
         if(store.getters.userMode) {
-            router.push({alias: '/user'})
+            router.push({path: '/tasks'})
         }
         if(store.getters.adminMode) {
-            router.push({alias: '/admin'})
+            router.push({path: '/accounts'})
         }
+
+        if(!store.getters.workerMode)
+            router.push({path: '/'})
     },
 })
 </script>
