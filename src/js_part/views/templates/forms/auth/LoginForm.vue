@@ -41,7 +41,7 @@
         >
             <input
                 type="radio"
-                @select="iamSelect(variant)"
+                @input="iamSelect(variant)"
                 name="iam"
                 :id="variant"
                 :value="variant"
@@ -65,7 +65,7 @@ import FormErrors from "../errors/FormErrors.vue";
 import FormViolations from "../errors/FormViolations.vue";
 import appModes from "../../../../data/values/modes/appModes";
 import router from "@/js_part/routing/router";
-import store from '@/js_part/data/store/storages'
+
 
 export default {
     name: "LoginForm",
@@ -135,6 +135,7 @@ export default {
         },
         iamSelect(variant) {
           this.form.iam = variant
+            console.log(variant);
         },
         referer() {
             this.$modes.setMainPageRegistrationMode()
@@ -164,5 +165,5 @@ export default {
 </script>
 
 <style scoped>
-  @import "../../../../../css_part/components/form.css";
+  @import "@/css_part/components/form.css";
 </style>

@@ -10,7 +10,7 @@ export default function() {
         async all(type) {
             return await fetch(checkUrl + '/all/' + type, getInit())
         },
-        async create(type, data) {
+        async create(data, type) {
             return await fetch(createUrl + '/' + type + pathVariables(data), postInit())
         },
         async check(data) {

@@ -6,7 +6,7 @@
         </div>
         <div class="table__type-block">
             <div class="table__type-row">
-                <div class="table__main-type"> {{ task.type }} </div>
+<!--                <div class="table__main-type"> {{ task.type }} </div>-->
             </div>
         </div>
 

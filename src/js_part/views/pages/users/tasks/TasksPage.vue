@@ -60,7 +60,6 @@ export default defineComponent({
                 .then(res => res.json())
                 .then(res => {
                     this.tasks = toRaw(res)
-                    console.log(toRaw(this.tasks)[0]);
                 })
         },
         removeTask(task) {
@@ -78,6 +77,14 @@ export default defineComponent({
         }
     },
     created() {
+
+      if(store.getters.workerMode) {
+          router.push({alias: '/worker'})
+      }
+      if(store.getters.adminMode) {
+          router.push({alias: '/admin'})
+      }
+
       this.loadTasks(this.currentType)
     }
 })

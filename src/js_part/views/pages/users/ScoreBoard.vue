@@ -78,21 +78,6 @@ export default defineComponent({
         this.$tasksat.statistics.load()
             .then(res => res.json())
             .then(res => {
-
-                return {
-                    usersCount: res['usersCount'],
-                    recommendationTasksCount: res['recommendationTasksCount'],
-                    questionTasksCount: res['questionTasksCount'],
-                    testTasksCount: res['testTasksCount'],
-                    completedRecommendationTasksCount: res['completedRecommendationTasksCount'],
-                    completedQuestionTasksCount: res['completedQuestionTasksCount'],
-                    completedTestTasksCount: res['completedTestTasksCount'],
-                    generalCompletedRecommendationTasksCount: res['generalCompletedRecommendationTasksCount'],
-                    generalCompletedQuestionTasksCount: res['generalCompletedQuestionTasksCount'],
-                    generalCompletedTestTasksCount: res['generalCompletedTestTasksCount'],
-                }
-            })
-            .then(res => {
                 this.$statistics.saveStatistics(res)
                 this.statistics = res
         })
@@ -146,10 +131,10 @@ export default defineComponent({
     created() {
 
         if(store.getters.adminMode) {
-            router.push({alias: '/admin'})
+            router.push({alias: '/worker'})
         }
         if(store.getters.adminMode) {
-            router.push({alias: '/worker'})
+            router.push({alias: '/admin'})
         }
 
         this.loadStatistics()

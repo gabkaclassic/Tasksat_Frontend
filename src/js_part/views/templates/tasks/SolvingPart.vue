@@ -9,19 +9,20 @@
                 name="answer">
     </div>
     <div v-else-if="task.type === 'TEST'">
+
         <div
-            v-for="key in Objects.keys(toRaw(task.variants))"
+            v-for="(value, key) in toRaw(task.variants)"
             :key="key"
         >
             <input
                 type="radio"
-                @select="variantSelect(toRaw(task.variants)[key])"
-                :name="toRaw(task.variants)[key]"
+                @input="variantSelect(value)"
+                name="variant"
                 :id="key"
-                :value="key"
+                :value="value"
             />
+            <label :for="variant">{{ value }}</label>
         </div>
-        <label :for="toRaw(task.variants)[key]">{{ key }}: {{ toRaw(task.variants)[key] }}</label>
     </div>
 
     <button @click="checkSolve"> Submit </button>
@@ -61,7 +62,7 @@ export default defineComponent({
             this.$tasksat.tasks.check(this.form)
                 .then(res => res.json())
                 .then(res => {
-                    this.wrong = res['right']
+                    this.wrong = !res['right']
                 })
                 .then(() => {
 

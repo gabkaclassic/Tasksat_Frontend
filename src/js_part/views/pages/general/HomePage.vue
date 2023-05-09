@@ -13,7 +13,7 @@ import RegistrationForm from "@/js_part/views/templates/forms/auth/RegistrationF
 import store from '@/js_part/data/store/storages'
 export default {
 
-    name: "FormTemplate",
+    name: "HomePage",
     components: {LoginForm, RegistrationForm},
     data() {
         return {

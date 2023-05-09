@@ -15,7 +15,7 @@
                         :value=signButton
                         class = "input-form__bottom_registration"
                 >
-                <a href="{{ link }}" class="link link_active_sign-in" @click.prevent="referer"> {{ signLink }} </a>
+                <a v-if="link !== undefined && link.length > 0" href="{{ link }}" class="link link_active_sign-in" @click.prevent="referer"> {{ signLink }} </a>
             </div>
         </form>
     </section>
@@ -30,11 +30,9 @@ export default {
     props: {
         link: {
             type: String,
-            default: '/home'
         },
         signLink: {
             type: String,
-            default: 'Go to homepage'
         },
         signButton: {
             type: String,
@@ -53,8 +51,7 @@ export default {
         referer() {
             this.$emit('referer')
         }
-    }
-
+    },
 }
 </script>
 
