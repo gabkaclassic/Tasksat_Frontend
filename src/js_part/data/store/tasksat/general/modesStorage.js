@@ -1,6 +1,6 @@
-import appModes from "../../../values/modes/appModes";
-import mainPageModes from "../../../values/modes/mainPageModes";
-import taskPageModes from "../../../values/modes/taskPageModes";
+import appModes from "@/js_part/data/values/modes/appModes";
+import mainPageModes from "@/js_part/data/values/modes/mainPageModes";
+import taskPageModes from "@/js_part/data/values/modes/taskPageModes";
 
 const MODE = 'APP_MODE'
 const MAIN_PAGE_MODE = 'MAIN_PAGE_MODE'
@@ -8,7 +8,7 @@ const TASK_PAGE_MODE = 'TASK_PAGE_MODE'
 
 export default {
     state: {
-        applicationMode: (sessionStorage.getItem(MODE) == null) ? appModes.user : sessionStorage.getItem(MODE),
+        applicationMode: (sessionStorage.getItem(MODE) == null) ? appModes.unauthorized : sessionStorage.getItem(MODE),
         mainPageMode: (sessionStorage.getItem(MAIN_PAGE_MODE) == null) ? mainPageModes.login : sessionStorage.getItem(MAIN_PAGE_MODE),
         taskPageMode: (sessionStorage.getItem(TASK_PAGE_MODE) == null) ? taskPageModes.all : sessionStorage.getItem(TASK_PAGE_MODE),
     },
@@ -39,6 +39,9 @@ export default {
         adminMode(state) {
             return state.applicationMode === appModes.admin
         },
+        unauthorizedMode(state) {
+            return state.applicationMode === appModes.unauthorized
+        },
         userMode(state) {
             return state.applicationMode === appModes.user
         },
@@ -49,7 +52,7 @@ export default {
     mutations: {
         SET_MAIN_PAGE_MODE(state, value) {
           sessionStorage.setItem(MAIN_PAGE_MODE, value)
-          state.pageMode = value
+          state.mainPageMode = value
         },
         SET_TASK_PAGE_MODE(state, value) {
             sessionStorage.setItem(TASK_PAGE_MODE, value)

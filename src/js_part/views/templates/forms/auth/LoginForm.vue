@@ -36,7 +36,7 @@
         </div>
 
         <div
-            v-for="(variant, key) in appModes"
+            v-for="(variant, key) in [appModes.admin, appModes.user, appModes.worker]"
             :key="key"
         >
             <input
@@ -65,6 +65,7 @@ import FormErrors from "../errors/FormErrors.vue";
 import FormViolations from "../errors/FormViolations.vue";
 import appModes from "../../../../data/values/modes/appModes";
 import router from "@/js_part/routing/router";
+import store from "@/js_part/data/store/storages";
 
 
 export default {
@@ -130,7 +131,7 @@ export default {
                 if(this.form.iam === appModes.worker)
                     router.push({path: '/workspace'})
                 if(this.form.iam === appModes.admin)
-                    router.push({path: '/users'})
+                    router.push({path: '/accounts'})
             })
         },
         iamSelect(variant) {
@@ -139,6 +140,7 @@ export default {
         },
         referer() {
             this.$modes.setMainPageRegistrationMode()
+            console.log(store.getters.mainPageMode);
         },
         validation() {
 

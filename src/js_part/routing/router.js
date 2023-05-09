@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomePage from "@/js_part/views/pages/general/HomePage.vue";
-import UsersPage from "@/js_part/views/pages/admins/UsersPage.vue";
+import AccountsPage from "@/js_part/views/pages/admins/AccountsPage.vue";
 import NotFoundPage from "@/js_part/views/pages/general/NotFoundPage.vue";
 import TasksPage from "@/js_part/views/pages/users/tasks/TasksPage.vue";
 import WorkspacePage from "@/js_part/views/pages/workers/WorkspacePage.vue";
@@ -26,8 +26,8 @@ const router = createRouter({
       alias: '/scoreboard'
     },
     {
-      path: '/users',
-      component: UsersPage,
+      path: '/accounts',
+      component: AccountsPage,
       alias: '/admin'
     },
     {

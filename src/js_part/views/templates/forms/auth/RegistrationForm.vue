@@ -2,10 +2,10 @@
 
     <form-template
             :method="properties.method"
-            :sign-header="properties.signHeader"
-            :sign-button="properties.signButton"
-            :link="properties.link"
-            :signLink="properties.signLink"
+            :sign-header="(store.getters.adminMode) ? 'Creation account' : properties.signHeader"
+            :sign-button="(store.getters.adminMode) ? 'Create account' : properties.signButton"
+            :link="(store.getters.adminMode) ? '/panel' : properties.link"
+            :signLink="(store.getters.adminMode) ? 'Go to panel' :properties.signLink"
             @referer="referer"
             @submit.prevent="signUp"
     >
@@ -62,15 +62,18 @@
             />
 
         </div>
-        <div v-if="!store.getters.userMode">
-        <input
-            type="radio"
-            v-for="(variant, key) in creationModes"
-            :key="key"
-            @select="iamSelect(variant)"
-            name="iam"
-            :value="variant"
-        />
+        <div v-if="store.getters.adminMode">
+            <div
+                v-for="(variant, key) in creationModes"
+                :key="key">
+                    <input
+                        type="radio"
+                        @input="iamSelect(variant)"
+                        name="iam"
+                        :value="variant"
+                    />
+                <label for="iam" >Create a {{ variant.toLowerCase() }} </label>
+            </div>
         </div>
         <form-violations
                 v-show="!violations.empty"
@@ -81,14 +84,15 @@
 </template>
 
 <script>
-import FormTemplate from "../FormTemplate.vue";
+import FormTemplate from "@/js_part/views/templates/forms/FormTemplate.vue";
 import {useVuelidate} from "@vuelidate/core";
 import {helpers, email, maxLength, minLength, required} from "@vuelidate/validators";
-import FormErrors from "../errors/FormErrors.vue";
-import FormViolations from "../errors/FormViolations.vue";
-import store from '../../../../data/store/storages'
-import creationModes from "../../../../data/values/modes/creationModes";
-import appModes from "../../../../data/values/modes/appModes";
+import FormErrors from "@/js_part/views/templates/forms/errors/FormErrors.vue";
+import FormViolations from "@/js_part/views/templates/forms/errors/FormViolations.vue";
+import store from '@/js_part/data/store/storages'
+import creationModes from "@/js_part/data/values/modes/creationModes";
+import appModes from "@/js_part/data/values/modes/appModes";
+import router from "@/js_part/routing/router";
 
 export default {
     name: "RegistrationForm",
@@ -144,10 +148,15 @@ export default {
 
         },
         referer() {
+            if(store.getters.adminMode) {
+                router.push({path: '/accounts'})
+
+            }
+
             this.$modes.setMainPageLoginMode()
         },
         success() {
-
+            this.$modes.setMainPageLoginMode()
         },
         validation() {
 
@@ -170,7 +179,10 @@ export default {
 
                 },
                 email: {
-                    required, email
+                    validEmail: helpers.withMessage('Invalid email', (value) => {
+                        return !store.getters.adminMode && email(value) && required(value) ||
+                            store.getters.adminMode
+                    })
                 },
                 password: {
                     required,
@@ -183,12 +195,18 @@ export default {
             },
         }
     },
+    created() {
+        if(store.getters.userMode)
+            router.push({alias: '/user'})
+        if(store.getters.workerMode)
+            router.push({alias: '/worker'})
+    }
 }
 </script>
 
 <style scoped>
 
-  @import "../../../../../css_part/components/form.css";
+  @import "@/css_part/components/form.css";
 
 
 </style>

@@ -18,6 +18,15 @@ export function postInit(data) {
     }
 }
 
+export function deleteInit(data) {
+    return {
+        method: "DELETE",
+        credentials: 'include',
+        headers: headers.jsonHeader(),
+        body: JSON.stringify(data),
+    }
+}
+
 export function putInit(data) {
     return {
         method: "PUT",

@@ -1,8 +1,8 @@
 <template>
 
-  <login-form v-if="store.getters.loginMode" />
+  <login-form v-show="store.getters.loginMode" />
 
-  <registration-form v-else />
+  <registration-form v-show="store.getters.registrationMode" />
 
 </template>
 

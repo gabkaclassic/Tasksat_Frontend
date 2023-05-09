@@ -15,8 +15,7 @@
             v-for="m in modes"
             :key="m"
           >
-            <input
-                    type="radio"
+            <input type="radio"
                    :value="m"
                    name="modes"
                    :id="m"
@@ -146,7 +145,6 @@ export default defineComponent({
       createTask() {
 
           if(!this.validation()) {
-              console.log(this.violations);
               return
           }
 

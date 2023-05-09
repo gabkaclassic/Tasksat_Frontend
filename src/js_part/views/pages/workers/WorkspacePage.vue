@@ -21,7 +21,7 @@ export default defineComponent({
             router.push({alias: '/user'})
         }
         if(store.getters.adminMode) {
-            router.push({alias: '/worker'})
+            router.push({alias: '/admin'})
         }
     },
 })

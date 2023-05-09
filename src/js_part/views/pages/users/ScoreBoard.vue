@@ -131,15 +131,13 @@ export default defineComponent({
     created() {
 
         if(store.getters.adminMode) {
-            router.push({alias: '/worker'})
+            router.push({path: '/accounts'})
         }
-        if(store.getters.adminMode) {
-            router.push({alias: '/admin'})
+        if(store.getters.workerMode) {
+            router.push({path: '/workspace'})
         }
 
         this.loadStatistics()
-
-        setInterval(this.forceLoadStatistics, 360000)
     },
 })
 </script>
