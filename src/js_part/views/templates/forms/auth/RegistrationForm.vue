@@ -11,7 +11,7 @@
     >
         <div class="input-form">
             <input
-                    v-if="store.getters.userMode"
+                    v-if="store.getters.unauthorizedMode"
                     type="text"
                     v-model.trim=form.email placeholder="Email"
                     :class= "`input-form__email ${v$.form.email.$dirty && v$.form.email.$error ? 'input-form_station_error' : ''}`"
@@ -110,7 +110,7 @@ export default {
                 password: '',
                 confirmPassword: '',
                 email: '',
-                iam: (store.getters.userMode) ? appModes.user : '',
+                iam: appModes.user,
             },
             properties: {
                 signButton: "Sign up",
@@ -135,16 +135,15 @@ export default {
                 password: this.form.password,
                 iam: this.form.iam
             })
-                .then(res => res.text()).then(body => {
-                this.violations = []
-                this.violations = JSON.parse(body)['violations']
-
-                if(this.violations.length !== 0) {
-                    return;
-                }
-
-                this.$emit('success')
+                .then(res => res.json()).then(res => {
+                this.violations = res['violations']
             })
+                .then(() => {
+
+                    if(this.violations.length === 0) {
+                        this.$modes.setMainPageLoginMode()
+                    }
+                })
 
         },
         referer() {
@@ -180,7 +179,7 @@ export default {
                 },
                 email: {
                     validEmail: helpers.withMessage('Invalid email', (value) => {
-                        return !store.getters.adminMode && email(value) && required(value) ||
+                        return !store.getters.adminMode && email && required ||
                             store.getters.adminMode
                     })
                 },

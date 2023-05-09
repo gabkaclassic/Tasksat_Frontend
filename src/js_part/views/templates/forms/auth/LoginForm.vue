@@ -114,9 +114,6 @@ export default {
             }).then(res => {
 
                     return res.json()
-                },
-                (e) => {
-                    this.violations.push('Network error')
                 }
             ).then(t => t['token'])
                 .then(token => {
@@ -138,11 +135,10 @@ export default {
         },
         iamSelect(variant) {
           this.form.iam = variant
-            console.log(variant);
         },
         referer() {
+
             this.$modes.setMainPageRegistrationMode()
-            console.log(store.getters.mainPageMode);
         },
         validation() {
 

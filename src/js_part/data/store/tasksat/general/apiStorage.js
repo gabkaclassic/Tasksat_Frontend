@@ -1,7 +1,9 @@
+import appModes from "@/js_part/data/values/modes/appModes";
+
 const TOKEN = 'AUTH_TOKEN'
 export default {
     state: {
-        token: (sessionStorage.getItem(TOKEN) == null) ? '' : sessionStorage.getItem(TOKEN),
+        token: sessionStorage.getItem(TOKEN),
     },
     getters: {
         authToken(state) {
@@ -20,6 +22,7 @@ export default {
         },
         logout(context) {
             context.commit('SET_TOKEN', '')
+            context.commit('SET_APP_MODE', appModes.unauthorized)
         },
     },
 }

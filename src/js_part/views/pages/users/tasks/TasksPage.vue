@@ -11,7 +11,7 @@
         </ul>
       </div>
 
-      <span v-if="store.getters.allTaskMode && tasks !== null && tasks.length === 0">Tasks not found :(</span>
+      <span class="mock" v-if="store.getters.allTaskMode && tasks !== null && tasks.length === 0">Tasks not found :(</span>
       <div v-else-if="store.getters.allTaskMode">
 
         <section class="content__tasks" >

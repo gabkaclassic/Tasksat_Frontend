@@ -6,12 +6,24 @@
     display: inline;
     padding-left: 50px;
     font-style: oblique;
+    flex: 0 0 33.333333%;
 }
 .menu li:hover {
     text-decoration: solid;
     font-size: 20px;
 }
+
+.mock {
+    font-size: 32px;
+    padding-left: 40%;
+    justify-content: center;
+}
+
 .menu {
     display: flex;
     justify-content: center;
+}
+
+.logout {
+    z-index: 2;
 }
