@@ -60,13 +60,15 @@ export default defineComponent({
     },
     created() {
 
-
         if(store.getters.userMode) {
             router.push({path: '/tasks'})
         }
         if(store.getters.workerMode) {
             router.push({path: '/workspace'})
         }
+
+        if(!store.getters.adminMode)
+            router.push({path: '/'})
 
         this.loadAccounts()
     },

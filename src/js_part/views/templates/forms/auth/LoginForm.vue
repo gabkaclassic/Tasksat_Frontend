@@ -123,15 +123,17 @@ export default {
                     this.$api.login(token, this.form.iam)
                 })
                 .then(() => {
+                    console.log(this.violations);
+                    if(this.violations.length > 0)
+                        return
 
-                if(this.violations.length > 0)
-                    return
-                if(this.form.iam === appModes.user)
-                    router.push({path: '/tasks'})
-                if(this.form.iam === appModes.worker)
-                    router.push({path: '/workspace'})
-                if(this.form.iam === appModes.admin)
-                    router.push({path: '/accounts'})
+                    console.log(this.form.iam);
+                    if(this.form.iam === appModes.user)
+                        router.push({path: '/tasks'})
+                    if(this.form.iam === appModes.worker)
+                        router.push({path: '/workspace'})
+                    if(this.form.iam === appModes.admin)
+                        router.push({path: '/accounts'})
             })
         },
         iamSelect(variant) {

@@ -79,11 +79,14 @@ export default defineComponent({
     created() {
 
       if(store.getters.workerMode) {
-          router.push({alias: '/worker'})
+          router.push({path: '/workspace'})
       }
       if(store.getters.adminMode) {
-          router.push({alias: '/admin'})
+          router.push({path: '/accounts'})
       }
+
+        if(!store.getters.userMode)
+            router.push({path: '/'})
 
       this.loadTasks(this.currentType)
     }
