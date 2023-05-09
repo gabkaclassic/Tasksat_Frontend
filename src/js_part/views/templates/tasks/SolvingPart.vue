@@ -62,7 +62,7 @@ export default defineComponent({
             this.$tasksat.tasks.check(this.form)
                 .then(res => res.json())
                 .then(res => {
-                    this.wrong = !res['right']
+                    this.wrong = !res['success']
                 })
                 .then(() => {
 
